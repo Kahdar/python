@@ -3,18 +3,12 @@ pipeline:
   name: Build python
   orgIdentifier: default
   projectIdentifier: default_project
-  properties:
-    ci:
-      codebase:
-        build: <+input>
-        connectorRef: account.Github
-        repoName: python
   stages:
     - stage:
         identifier: build
         name: build
         spec:
-          cloneCodebase: true
+          cloneCodebase: false
           execution:
             steps:
               - step:
@@ -34,4 +28,8 @@ pipeline:
           runtime:
             type: Docker
             spec: {}
+          caching:
+            enabled: false
+            paths: []
         type: CI
+        description: ""
