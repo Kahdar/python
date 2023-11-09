@@ -1,0 +1,39 @@
+pipeline:
+  name: build-demo-repo
+  identifier: builddemorepo
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: githubconnector
+        repoName: python
+        build: <+input>
+  stages:
+    - stage:
+        name: Build
+        identifier: Build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run
+                  identifier: Run
+                  spec:
+                    shell: Sh
+                    command: |-
+                      echo "Welcome to Harness CI"
+                      python -m pip install --upgrade pip
+                      pip install  pytest
+                      if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
