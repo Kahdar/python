@@ -377,3 +377,5 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+        delegateSelectors:
+          - harness-demo-delegate
